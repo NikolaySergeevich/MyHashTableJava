@@ -82,6 +82,21 @@ public class HashMap<K, V> {//создаём обобщённый
         }
 
         /**
+         * получение всех значений из текущего бакета(списка)
+         * @return
+         */
+        public StringBuilder getAllValue(){
+            StringBuilder str = new StringBuilder();
+            Node node = head;
+            while (node != null){
+                str.append(node.value.value);
+                str.append("\n");
+                node = node.next;
+            }
+            return str;
+        }
+
+        /**
          * удаление узла
          * @param key
          * @return
@@ -158,6 +173,20 @@ public class HashMap<K, V> {//создаём обобщённый
         //именно entiti и является элементом узла (бакета). Необходимо теперь оратиться к бакету по индексу и положить в него entiti
 
         return (V)bucked.add(entiti);
+    }
+
+    /**
+     * получение всех значений
+     * @return
+     */
+    public StringBuilder getAllValue(){
+        StringBuilder all = new StringBuilder();
+        for (Bucket bucket: buckets) {
+            if (bucket != null){
+                all.append(bucket.getAllValue());
+            }
+        }
+        return all;
     }
 
     /**
